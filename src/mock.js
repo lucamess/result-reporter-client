@@ -2,6 +2,7 @@ export const mockDataResultEntries = [
 	{
 		studentCode: 1111, studentName: "Euel", grade: "12", section: "G",
 		schoolCode: 1, examCode: "Test 2",
+
 		markList: { "Amharic": 8, "English": 11, "Math": 10, "Physics": 12, "HPE": 10, }
 	},
 	{

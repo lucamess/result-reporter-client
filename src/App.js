@@ -5,10 +5,12 @@ import { RecoilRoot } from "recoil"
 import { Toaster } from "react-hot-toast"
 
 import StudentLoginPage from "src/views/login/StudentLoginPage"
-import DashboardPage from "src/views/dashboard/DashboardPage"
-import ResultPage from "src/views/dashboard/ResultPage"
 import AdminLoginPage from "src/views/login/AdminLoginPage"
-import AdminDashboardPage from "src/views/dashboard/AdminDashboardPage"
+import StudentDashboardPage from "src/views/student/StudentDashboardPage"
+import TeacherDashboardPage from "src/views/teacher/TeacherDashboardPage"
+import TeacherDashboard from "src/views/teacher/TeacherDashboard2"
+import AdminDashboard from "src/views/admin/AdminDashboard"
+
 import { colors, routePathList } from "./config"
 
 const GlobalStyle = createGlobalStyle`
@@ -48,11 +50,20 @@ const App = () => {
 					<GlobalStyle />
 					<Toaster />
 					<Routes>
-						<Route path={routePathList.studentLogin} element={<StudentLoginPage />} exact />
-						<Route path={routePathList.studentDashboard} element={<DashboardPage />} />
-						<Route path={routePathList.studentResult} element={<ResultPage />} />
-						<Route path={routePathList.adminLogin} element={<AdminLoginPage />} />
-						<Route path={routePathList.adminDashboard} element={<AdminDashboardPage />} />
+						<Route path={routePathList.studentLogin}
+							element={<StudentLoginPage />} exact />
+
+						<Route path={routePathList.studentDashboard}
+							element={<StudentDashboardPage />} />
+
+						<Route path={routePathList.adminLogin}
+							element={<AdminLoginPage />} />
+
+						<Route path={routePathList.teacherDashboard}
+							element={<TeacherDashboard />} />
+
+						<Route path={routePathList.adminDashboard}
+							element={<AdminDashboard />} />
 					</Routes>
 				</HashRouter>
 			</ThemeProvider>

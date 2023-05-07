@@ -2,16 +2,19 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import { useRecoilState } from "recoil"
 
-import { H2, H7, H4, H5, FlexGrow, Select, Space } from "comp"
-import { studentInfoState, resultEntriesState } from "src/states"
+import { H2, H7, H5, FlexGrow, Select, Space } from "comp"
+import { studentInfoState, entriesState } from "src/states"
 import { getExamCodeList } from "src/utils"
+import useAuthProtected from "src/hooks/useAuthProtected"
 
 const DashboardPage = () => {
-	const [ { studentName } ] = useRecoilState(studentInfoState)
-	const [ resultEntries ] = useRecoilState(resultEntriesState)
-	const examCodeList = getExamCodeList(resultEntries)
+	useAuthProtected("student")
+
+	const [ { name } ] = useRecoilState(studentInfoState)
+	const [ entries ] = useRecoilState(entriesState)
+	const examCodeList = getExamCodeList(entries)
 	const [selExamCode, setSelExamCode] = useState(examCodeList[0])
-	const { markList } = resultEntries.filter(entry => entry.examCode == selExamCode)[0]
+	const { marks } = entries.filter(entry => entry.examCode == selExamCode)[0]
 
 	const handleExamCode= e => {
 		setSelExamCode(e.target.value)
@@ -20,7 +23,7 @@ const DashboardPage = () => {
 	return (
 		<Container>
 			<Headerbar>
-				<H2>Hello, {studentName}</H2>
+				<H2>Hello, {name}</H2>
 			</Headerbar>
 			<Mainbar>
 				<H5>Recent exams</H5>
@@ -33,9 +36,9 @@ const DashboardPage = () => {
 
 				<Space h="1rem" />
 				<MarkListC>
-					{Object.keys(markList).map(subject => (
+					{Object.keys(marks).map(subject => (
 						<Mark key={subject}>
-							<strong>{subject}: </strong><FlexGrow />{markList[subject]}
+							<strong>{subject}: </strong><FlexGrow />{marks[subject]}
 						</Mark>
 					))}
 				</MarkListC>

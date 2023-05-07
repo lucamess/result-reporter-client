@@ -1,7 +1,7 @@
 import React, { useRef } from "react"
 import { Button } from "comp"
 
-const UploadButton = ({ children, onChange }) => {
+const ImportButton = ({ children, onChange, type = "outline", size = "small", }) => {
 	const inputRef = useRef()
 	const handleClick = () => {
 		inputRef.current.click()
@@ -12,11 +12,11 @@ const UploadButton = ({ children, onChange }) => {
 			<div style={{ display: "none" }}>
 				<input ref={inputRef} type="file" onChange={onChange} />
 			</div>
-			<Button onClick={handleClick}>
+			<Button type={type} size={size} onClick={handleClick}>
 				{children}
 			</Button>
 		</>
 	)
 }
 
-export default UploadButton
+export default ImportButton

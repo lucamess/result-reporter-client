@@ -5,9 +5,10 @@ import { nullFn } from "src/config"
 
 
 const defaultInitVal = {
-	email: "morto",
-	password: "della",
+	email: "tesfaye@gmail.com",
+	password: "1",
 }
+
 const AdminLoginForm = ({ initValue = defaultInitVal, onSubmit = nullFn }) => {
 	const [email, setEmail] = useState(initValue.email)
 	const [password, setPassword] = useState(initValue.password)

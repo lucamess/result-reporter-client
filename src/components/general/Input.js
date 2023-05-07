@@ -15,6 +15,7 @@ export const InputMultiple = styled(Input).attrs({ as: "textarea" })`
 	font-family: sans-serif;
 `
 
-export const Select = styled(Input).attrs({ as: "select" })``
+export const Select = styled(Input).attrs({ as: "select" })`
+`
 
 

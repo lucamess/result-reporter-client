@@ -5,29 +5,31 @@ import { useRecoilState } from "recoil"
 import toast from "react-hot-toast"
 
 import StudentLoginForm from "./StudentLoginForm"
-import { resultEntriesState, studentInfoState } from "src/states"
-import { getResultEntries } from "src/api"
+import { entriesState, studentInfoState } from "src/states"
+import { loginStudent } from "src/api"
 import { links } from "src/config"
 
+const fetchToastOptions = {
+	loading: "Logging in...",
+	success: <strong>Logged in successfully</strong>,
+	error: <strong>Incorrect student code (ID number) or password</strong>,
+}
+
+
 const StudentLoginPage = () => {
-	const [ , setResultEntries ] = useRecoilState(resultEntriesState)
+	const [ , setEntries ] = useRecoilState(entriesState)
 	const [ , setStudentInfo ] = useRecoilState(studentInfoState)
 	const navigate = useNavigate()
 
 	const handleSubmit = (creds) => {
 		toast.promise(
-			getResultEntries(creds)
-			.then(({ entries, studentInfo }) => {
-				setResultEntries(entries)
-				setStudentInfo(studentInfo)
-				navigate(links.studentDashboard)
-			}),
-			{
-				loading: "Logging in...",
-				success: <strong>Logged in successfully</strong>,
-				error: <strong>Incorrect student code (ID number)</strong>,
-			}
-		)
+			loginStudent(creds)
+				.then(({ entries, student }) => {
+					setEntries(entries)
+					setStudentInfo(student)
+					navigate(links.studentDashboard)
+				}),
+			fetchToastOptions)
 	}
 
 	return (

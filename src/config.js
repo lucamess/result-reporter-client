@@ -21,26 +21,30 @@ export const nOfSections = {
 
 export const sectionLetters = "ABCDEFGHI".split("")
 export const gradeList = [9, 10, 11, 12]
-export const serverBaseUrl = "https://resultreporter-df58.restdb.io/"
+export const examCodeList = ["Test 1", "Test 2", "Mid Exam", "Final Exam", "Model"]
+export const schoolCode = 1
+
+export const serverBaseUrl = "https://incorporeal-yaw.000webhostapp.com/"
 
 export const links = {
 	studentLogin: "/",
 	studentDashboard: "/home/",
-	studentResult: "/result/",
 	adminLogin: "/al/",
+	teacherDashboard: "/td/",
 	adminDashboard: "/ad/",
 }
 
 export const routePathList = {
 	studentLogin: "/",
 	studentDashboard: "/home/",
-	studentResult: "/result/:examCode",
 	adminLogin: "/al",
-	adminDashboard: "/ad/",
+	teacherDashboard: "/td",
+	adminDashboard: "/ad",
 }
 
-export const schoolCode = 1
-export const examCodeList = [
-	"Test 1", "Test 2", "Mid Exam", "Final Exam",
-]
+export const errMessages = {
+	"AUTH_ERROR": "Please enter the correct password",
+	"NETWORK_ERROR": "No internet connection, please try again later",
+}
+
 
